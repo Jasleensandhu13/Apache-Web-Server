@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.timepicker.js"></script>
+<script src="js/validateForm.js"></script>
+<script src="js/api.js"></script>
+
+<title>Appointment Tracker</title>
+</head>
+<body>
+<div class="container">
+<br>
+<br>
+<p>
+<h1> Appointment Tracker </h1>
+<hr/>
+<button type="button" id="new" class="btn btn-primary">NEW</button>
+<button type="button" id="cancel" class="btn btn-primary">CANCEL</button>
+</p>
+<div id="add-form">
+	<!– Add new appointment to the database(initially hidden)  –> 
+    <form method="post" id="addForm" name="addForm" action="/cgi-bin/TakeReservations.pl" onsubmit="return validateForm()">
+    <table class="table table-striped">
+	    <tr>
+            <td >Date</td>
+            <td><input name="Date" type="text" id ="datepicker" /></td>
+			<td> <span id="dateErrorMessage" style=""> </span></td> 
+        </tr>
+
+        <tr>
+            <td >Time</td>
+            <td><input name="Time" type="text" id="datepick" class="time"  /></td>
+			<td> <span id="timeErrorMessage"> </span></td> 
+        </tr>
+
+        <tr>
+            <td >Description</td>
+            <td>
+			<textarea name="Description" rows="4" cols="50" value="">
+			</textarea>
+			</td>
+			<td> <span id="descriptionErrorMessage"> </span></td> 
+        </tr>
+	</table>
+    </form>
+	<br /> 
+	
+</div>
+<hr/>
+<!- Search the appointment lists based on information provided the textbox –>
+<center> 
+<div id="search-form" >	
+		<form action="post" onsubmit="return getAppointments()"> 
+		<input name="searchinfo" type="text" id ="searchvalueType" style="width: 300px;"/>	
+		<input type="submit" name="submit" id="searchbttn" value="SEARCH" />
+		</form>
+</div>
+</center>
+<!– DOM area where data is populated dynamic without refreshing the page –> 
+<div id="search-result">
+  
+</table>
+</div>
+	
+</div>
+<p>
+<center> Developed by <a href="https://www.linkedin.com/in/jasleen-kaur-sandhu-655019193/" target="_blank"> Jasleen Kaur Sandhu  </a> <center>
+<center><!--#echo var="DATE_LOCAL" --><center>
+<center>Document was last modified on <!--#flastmod file="index.html" --><center>
+<center><a href="localhost:8000" target="_blank">Server Logs</a></center> 
+</p>
+
+</body>
+</html>
