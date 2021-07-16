@@ -5,26 +5,26 @@ use DBI;
 print "Content-Type: text/html\n\n";
 #Getting values from the CGI Environment variable.
 my $q = CGI::Vars();
-my $appointment_date = $q->{Date};
-my $appointment_time = $q->{Time};
-my $description = $q->{Description};
+my $dateOfAppointment = $q->{Date};
+my $timeOfAppointment = $q->{Time};
+my $Ailment_Issue = $q->{Description};
 #remove trailing spaces u
-$appointment_date =~ s/^\s*(.*?)\s*$/$1/;
-$appointment_time =~ s/^\s*(.*?)\s*$/$1/;
-$description =~ s/^\s*(.*?)\s*$/$1/;
+$dateOfAppointment =~ s/^\s*(.*?)\s*$/$1/;
+$timeOfAppointment =~ s/^\s*(.*?)\s*$/$1/;
+$Ailment_Issue =~ s/^\s*(.*?)\s*$/$1/;
 #Database operation using perl
 my $driver = "mysql"; 
-my $database = "appointmentPerldb";
-my $dsn = "DBI:$driver:database=$database";
-my $userid = "jasleensandhu13";
-my $password = "Iamkhaleesi187!";
+my $dbName = "appointmentPerldb";
+my $dsn = "DBI:$driver:database=$dbName";
+my $userName = "jasleensandhu13";
+my $secret = "Groupfive497!";
 #Connection to the database
-my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
+my $dbh = DBI->connect($dsn, $userName, $secret ) or die $DBI::errstr;
 #Insert records to the database;
 my $sth = $dbh->prepare("INSERT INTO appointmentMaster
                        (appointment_date, appointment_time, description)
                         values
-                       ('$appointment_date', '$appointment_time', '$description')");
+                       ('$dateOfAppointment', '$timeOfAppointment', '$Ailment_Issue')");
 $sth->execute() or die $DBI::errstr;
 $sth->finish();
 # redirect to home page
